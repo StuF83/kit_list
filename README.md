@@ -1,2 +1,2 @@
-# sinatra_boilerplate
-Boilerplate directory structure for Sinatra app, including Gemfile and Rakefile.
+# kit_list app
+
