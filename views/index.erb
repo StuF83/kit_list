@@ -7,18 +7,20 @@
   <title>Document</title>
 </head>
 <body>
-  <%user = User.first%>
-  <%activities = user.activities%>
-  <%activities.each do |activity|%>
-    <h1><%=activity.name%></h1>
-  <%end%>
-
-
   <form action="http://localhost:4567/new_activity" method="post">
       <label for="activity">Activity</label>
       <input type="text" id="activity" name="activity">
       <button>Save</button>
   </form>
+
+  <ul style="list-style-type:none;">
+    <%user = User.first%>
+    <%activities = user.activities%>
+    <%activities.each do |activity|%>
+      <li><input type="checkbox" name=<%activity.name%> value=<%activity.name%>><%=activity.name%></li>
+    <%end%>
+  </ul>
+
 
 </body>
 </html>
