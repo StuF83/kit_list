@@ -4,23 +4,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
   <title>Document</title>
 </head>
 <body>
-  <form action="http://localhost:4567/new_activity" method="post">
-      <label for="activity">Activity</label>
-      <input type="text" id="activity" name="activity">
-      <button>Save</button>
-  </form>
+  <div>
+    <h2>nav bar</h2>
+  </div>
+  <div class="container">
+    <div class="left">
+      <form action="http://localhost:4567/new_activity" method="post">
+          <label for="activity">Activity</label>
+          <input type="text" id="activity" name="activity">
+          <button>Save</button>
+      </form>
 
-  <ul style="list-style-type:none;">
-    <%user = User.first%>
-    <%activities = user.activities%>
-    <%activities.each do |activity|%>
-      <li><input type="checkbox" name=<%activity.name%> value=<%activity.name%>><%=activity.name%></li>
-    <%end%>
-  </ul>
-
+      <ul style="list-style-type:none;">
+        <%user = User.first%>
+        <%activities = user.activities%>
+        <%activities.each do |activity|%>
+          <li><input type="checkbox" name=<%activity.name%> value=<%activity.name%>><%=activity.name%></li>
+        <%end%>
+      </ul>
+    </div>
+    <div class="right">
+      <h2>Items</h2>
+    </div>
+  </div>
 
 </body>
 </html>
