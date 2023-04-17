@@ -23,7 +23,7 @@
         <%user = User.first%>
         <%activities = user.activities%>
         <%activities.each do |activity|%>
-          <li><input type="checkbox" name=<%activity.name%> value=<%activity.name%>><%=activity.name%></li>
+          <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
         <%end%>
       </ul>
     </div>
