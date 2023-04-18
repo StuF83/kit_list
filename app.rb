@@ -27,9 +27,11 @@ get '/item_request' do
   # we need js to send an http request with a post?? so we can get params?
   # we can do this with a fetch() post request, we don't need to wait for .then as sinatra will be updating the page
   # or do we return a json and use that to update the page? can we do this...? We'd need sinatra to return the json back to the js request, how can we do this?
-
+  activity = params[:name]
   user = User.first
-  activity = user.activities[0]
+  activity = user.activities.find_by(name: activity)
+  # activity = user.activities.find_by[name: activity]
+  # p activity.items
   items = activity.items
   items.to_json
 end
