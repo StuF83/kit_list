@@ -9,12 +9,10 @@ unorderedList.addEventListener('change', (event) => {
   // window.location.href = 'http://localhost:4567/item_request';
   var data = { NAME: event.target.name}
   var url = new URL("http://localhost:4567/item_request")
-  // console.log(data);
-  // console.log(url.searchParams)
   Object.keys(data).forEach(key => {
-    console.log(key);
-    console.log(data[key]);
+    url.searchParams.append(key, data[key])
   })
+  console.log(url)
 
 
 
