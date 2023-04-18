@@ -9,6 +9,12 @@ require_relative 'models/item.rb'
 
 set :database, {adapter: "sqlite3", database: 'db/development.sqlite3'}
 
+def addItemsToArray(itemObjects)
+  itemNames = []
+  itemObjects.each { |item|  itemNames << item.name }
+  itemNames
+end
+
 get '/' do
   erb :index
 end
@@ -30,8 +36,6 @@ get '/item_request' do
   activity = params[:name]
   user = User.first
   activity = user.activities.find_by(name: activity)
-  # activity = user.activities.find_by[name: activity]
-  # p activity.items
-  items = activity.items
-  items.to_json
+  itemObjects = activity.items
+  addItemsToArray(itemObjects).to_json
 end
