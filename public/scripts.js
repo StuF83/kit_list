@@ -18,5 +18,11 @@ unorderedList.addEventListener('change', (event) => {
   .then(response => response.json())
   .then((data) => {
     console.log(data)
+    const itemList = document.getElementById("itemList");
+    console.log(itemList);
+    data.forEach(element => {
+      // console.log(element);
+      itemList.insertAdjacentHTML("beforeend", `<li>${element}</li>`)
+    })
   })
 })
