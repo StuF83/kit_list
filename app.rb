@@ -22,9 +22,8 @@ end
 post '/new_activity' do
   activity = params[:activity]
   user = User.first
-  Activity.create(name: activity, user: user)
+  user.addActivity(activity)
   redirect back
-  erb :index
 end
 
 get '/item_request' do
