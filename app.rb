@@ -22,12 +22,8 @@ end
 post '/new_activity' do
   activity = params[:activity]
   user = User.first
-  p user.items
-  user.activities.find_by(name: "swimming").items.each{|item| user.items << item.name}
-  p user.items
-  # Activity.create(name: activity, user: user)
+  user.addActivity(activity)
   redirect back
-  # erb :index
 end
 
 get '/item_request' do

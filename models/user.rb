@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   def set_defaults
     self.items ||= []
   end
+
+  def addActivity(activity)
+    Activity.create(name: activity, user: self)
+  end
 end
