@@ -9,24 +9,33 @@ require_relative 'models/item.rb'
 
 set :database, {adapter: "sqlite3", database: 'db/development.sqlite3'}
 
-def addItemsToArray(itemObjects)
-  itemNames = []
-  itemObjects.each { |item|  itemNames << item.name }
-  itemNames
-end
+enable :sessions
 
 get '/' do
   erb :index
 end
 
+get '/login' do
+  email = params[:email]
+  user = User.find_by(email: email)
+  session[:user] = user
+  p "session user #{session[:user]}"
+  redirect back
+end
+
 post '/new_activity' do
   activity = params[:activity]
-  user = User.first
+  user = session[:user]
   Activity.create(name: activity, user: user)
   redirect back
   erb :index
 end
 
+def addItemsToArray(itemObjects)
+  itemNames = []
+  itemObjects.each { |item|  itemNames << item.name }
+  itemNames
+end
 get '/item_request' do
 
     # get an array of items
