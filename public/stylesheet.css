@@ -1,3 +1,40 @@
+html, body {
+  margin:0;
+  padding:0;
+}
+
+.navbar {
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+.title {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.form-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-card{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: right; */
+  justify-content: space-between;
+}
+
+.login-form-item {
+  margin: 20px 0px;
+}
+
 .container {
   display: flex;
 }
