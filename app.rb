@@ -19,6 +19,18 @@ get '/' do
   erb :index
 end
 
+get '/landing' do
+  erb :landing
+end
+
+post '/login' do
+  session[:email] = params[:email]
+  session[:password] = params[:password]
+  redirect back unless User.exists?(email: session[:email])
+  redirect back unless User.find_by(email: session[:email]).password == session[:password]
+  redirect '/'
+end
+
 post '/new_activity' do
   activity = params[:activity]
   user = User.first
