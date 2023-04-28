@@ -3,16 +3,22 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
-require_relative 'models/user.rb'
-require_relative 'models/activity.rb'
-require_relative 'models/item.rb'
+require_relative 'models/user'
+require_relative 'models/activity'
+require_relative 'models/item'
 
-set :database, {adapter: "sqlite3", database: 'db/development.sqlite3'}
+set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3'}
 
-def addItemsToArray(itemObjects)
-  itemNames = []
-  itemObjects.each { |item|  itemNames << item.name }
-  itemNames
+# def addItemsToArray(itemObjects)
+#   itemNames = []
+#   itemObjects.each { |item|  itemNames << item.name }
+#   itemNames
+# end
+
+def add_items_to_array(item_objects)
+  item_names = []
+  item_objects.each { |item| item_names << item.name }
+  item_names
 end
 
 get '/' do
@@ -27,14 +33,9 @@ post '/new_activity' do
 end
 
 get '/item_request' do
-
-    # get an array of items
-  # we need js to send an http request with a post?? so we can get params?
-  # we can do this with a fetch() post request, we don't need to wait for .then as sinatra will be updating the page
-  # or do we return a json and use that to update the page? can we do this...? We'd need sinatra to return the json back to the js request, how can we do this?
   activity = params[:name]
   user = User.first
   activity = user.activities.find_by(name: activity)
-  itemObjects = activity.items
-  addItemsToArray(itemObjects).to_json
+  item_objects = activity.items
+  add_items_to_array(item_objects).to_json
 end
