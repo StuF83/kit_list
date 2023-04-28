@@ -19,6 +19,16 @@ get '/' do
   erb :index
 end
 
+get '/landing' do
+  erb :landing
+end
+
+post '/login' do
+  session[:email] = params[:email]
+  session[:password] = params[:password]
+  p session
+end
+
 post '/new_activity' do
   activity = params[:activity]
   user = User.first
