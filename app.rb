@@ -28,6 +28,7 @@ post '/login' do
   session[:password] = params[:password]
   redirect back unless User.exists?(email: session[:email])
   redirect back unless User.find_by(email: session[:email]).password == session[:password]
+  session[:user] = User.find_by(email: session[:email])
   redirect '/'
 end
 
