@@ -1,7 +1,4 @@
-// we need to set an event listener onto the ul.
-
 const unorderedList = document.getElementById("ul");
-// const xmlHttpReq = new XMLHttpRequest
 
 unorderedList.addEventListener('change', (event) => {
   var data = { name: event.target.name}
