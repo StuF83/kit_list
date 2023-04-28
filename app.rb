@@ -9,14 +9,12 @@ require_relative 'models/item'
 
 set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3'}
 
-def add_items_to_array(item_objects)
-  item_names = []
-  item_objects.each { |item| item_names << item.name }
-  item_names
+configure do
+  enable :sessions
 end
 
 get '/' do
-  erb :index
+  erb :index, locals: { user: session[:user] }
 end
 
 get '/landing' do

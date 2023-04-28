@@ -9,7 +9,7 @@
 </head>
 <body>
   <div>
-    <h2>nav bar</h2>
+    <h2>Hello <%="#{session[:user].email}"%></h2>
   </div>
   <div class="container">
     <div class="left">
@@ -20,7 +20,7 @@
       </form>
 
       <ul id="ul" style="list-style-type:none;">
-        <%user = User.first%>
+        <%user = session[:user]%>
         <%activities = user.activities%>
         <%activities.each do |activity|%>
           <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
