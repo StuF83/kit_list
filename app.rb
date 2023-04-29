@@ -44,22 +44,10 @@ post '/new_activity' do
 end
 
 get '/item_request' do
-  # what we need to do here is have an item list as an instance variable for the user.
-  # As the request comes in, we either add or remove the items from the list instance variable.
-  # the instance variable should be an array of arrays.
-  # the first item of the array is the acitivity name, the subsequent items are the 'items'.
-  # as the param[:name] comes in, we can compare the name against the first item in each array (ie activity name)
-  # and either add or subtract depending on it's existance.
   activity = params[:name]
   user = session[:user]
-  p activity_name = user.activities.find_by(name: activity).name
-  p activity_items = user.activities.find_by(name: activity).items_array
-  p @items_to_pack
-  p user.add_items_to_pack(activity_name, activity_items)
-  p @items_to_pack << user.add_items_to_pack(activity_name, activity_items)
+  activity_name = user.activities.find_by(name: activity).name
+  activity_items = user.activities.find_by(name: activity).items_array
+  @items_to_pack << user.add_items_to_pack(activity_name, activity_items)
   @items_to_pack.to_json
-  # activity = user.activities.find_by(name: activity)
-  # p activity.items_array
-  # user.add_items_to_pack(activity.name, activity.items_array)
-  # p user.items_to_pack.to_json
 end
