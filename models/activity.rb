@@ -7,4 +7,11 @@ class Activity < ActiveRecord::Base
     items.each { |item| @item_list << item.name }
     @item_list
   end
+
+  def activity_in_packing_list?(packing_list)
+    packing_list.each_with_index do |activity_array, index|
+      return index if name == activity_array.first
+    end
+    false
+  end
 end
