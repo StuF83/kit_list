@@ -46,8 +46,13 @@ end
 get '/item_request' do
   activity = params[:name]
   user = session[:user]
-  activity_name = user.activities.find_by(name: activity).name
-  activity_items = user.activities.find_by(name: activity).items_array
-  @items_to_pack << user.add_items_to_pack(activity_name, activity_items)
+  index = user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
+  if index
+    @items_to_pack.delete_at(index)
+  else
+    activity_name = user.activities.find_by(name: activity).name
+    activity_items = user.activities.find_by(name: activity).items_array
+    @items_to_pack << user.add_items_to_pack(activity_name, activity_items)
+  end
   @items_to_pack.to_json
 end
