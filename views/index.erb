@@ -8,15 +8,22 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
-    <h2>Hello <%="#{session[:user].email}"%></h2>
+  <div class="navbar">
+    <div>
+    </div>
+    <div>
+    <h1 class ="title">Kit List</h1>
+    </div>
+    <div>
+    <h3 class ="login"><%="#{session[:user].email}"%></h3>
+    </div>
   </div>
   <div class="container">
     <div class="left">
-      <form action="http://localhost:4567/new_activity" method="post">
+      <form action="http://localhost:4567/new_activity" method="get">
           <label for="activity">Activity</label>
           <input type="text" id="activity" name="activity">
-          <button>Save</button>
+          <button>Add Activity</button>
       </form>
 
       <ul id="ul" style="list-style-type:none;">
@@ -34,7 +41,6 @@
     </div>
   </div>
 
-
-  <script src="scripts.js"></script>
+  <script src="scripts_index.js"></script>
 </body>
 </html>

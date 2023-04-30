@@ -36,11 +36,12 @@ post '/login' do
   redirect '/'
 end
 
-post '/new_activity' do
+get '/new_activity' do
   activity = params[:activity]
   user = session[:user]
-  user.add_activity(activity)
-  redirect back
+  erb :new_activity
+  # user.add_activity(activity)
+  # redirect back
 end
 
 get '/item_request' do

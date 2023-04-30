@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
+  <title>Add New Activity</title>
+</head>
+<body>
+  <div class="navbar">
+    <div>
+    </div>
+    <div>
+    <h1 class ="title">Kit List</h1>
+    </div>
+    <div>
+    <h3 class ="login">Log In</h3>
+    </div>
+  </div>
+  <div>
+    <form action="http://localhost:4567/new_activity_save" method="post">
+    <label for="new_activity">Activity</label>
+    <input type="text" id="new_activity" name="new_activity">
+    <button>Save Activty</button>
+    </form>
+  </div>
+
+  <script src="scripts_new_activity.js"></script>
+</body>
+</html>
