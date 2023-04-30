@@ -37,11 +37,21 @@ post '/login' do
 end
 
 get '/new_activity' do
-  activity = params[:activity]
-  user = session[:user]
   erb :new_activity
-  # user.add_activity(activity)
-  # redirect back
+end
+
+post '/new_activity_save' do
+  @user = session[:user]
+  new_activity_name = params[:new_activity_name]
+  @user.activities.create(name: new_activity_name)
+  activity = @user.activities.find_by(name: new_activity_name)
+  p items = params[:new_activity_items]
+  item_array = items.split(/\r\n/)
+  item_array.each do |item_name|
+    activity.items.create(name: item_name)
+  end
+  p activity.items
+  redirect '/'
 end
 
 get '/item_request' do
