@@ -15,7 +15,7 @@
     <h1 class ="title">Kit List</h1>
     </div>
     <div>
-    <h3 class ="login"><%="#{session[:user].email}"%></h3>
+    <h3 class ="login"><%=@user.email%></h3>
     </div>
   </div>
   <div class="container">
@@ -27,8 +27,8 @@
       </form>
 
       <ul id="ul" style="list-style-type:none;">
-        <%user = session[:user]%>
-        <%activities = user.activities%>
+        <%# user = @user%>
+        <%activities = @user.activities%>
         <%activities.each do |activity|%>
           <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
         <%end%>

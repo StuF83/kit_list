@@ -19,7 +19,8 @@ def initialize
 end
 
 get '/' do
-  erb :index, locals: { user: session[:user] }
+  @user = User.find(session[:user_id])
+  erb :index, locals: { user: @user }
 end
 
 get '/landing' do
@@ -31,7 +32,7 @@ post '/login' do
   session[:password] = params[:password]
   redirect back unless User.exists?(email: session[:email])
   redirect back unless User.find_by(email: session[:email]).password == session[:password]
-  session[:user] = User.find_by(email: session[:email])
+  session[:user_id] = User.find_by(email: session[:email]).id
   session[:items_to_pack] ||= @items_to_pack
   redirect '/'
 end
@@ -41,7 +42,7 @@ get '/new_activity' do
 end
 
 post '/new_activity_save' do
-  @user = session[:user]
+  @user = User.find(session[:user_id])
   new_activity_name = params[:new_activity_name]
   @user.activities.create(name: new_activity_name)
   activity = @user.activities.find_by(name: new_activity_name)
@@ -56,14 +57,14 @@ end
 
 get '/item_request' do
   activity = params[:name]
-  user = session[:user]
-  index = user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
+  @user = User.find(session[:user_id])
+  index = @user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
   if index
     @items_to_pack.delete_at(index)
   else
-    activity_name = user.activities.find_by(name: activity).name
-    activity_items = user.activities.find_by(name: activity).items_array
-    @items_to_pack << user.add_items_to_pack(activity_name, activity_items)
+    activity_name = @user.activities.find_by(name: activity).name
+    activity_items = @user.activities.find_by(name: activity).items_array
+    @items_to_pack << @user.add_items_to_pack(activity_name, activity_items)
   end
   @items_to_pack.to_json
 end
