@@ -1,4 +1,13 @@
+const url = new URL("http://localhost:4567/item_request")
 const unorderedList = document.getElementById("ul");
+
+unorderedList.addEventListener('change', (event) => {
+  var data = { name: event.target.name}
+  Object.keys(data).forEach(key => {
+    url.searchParams.append(key, data[key])
+  })
+  fetchList(url)
+})
 
 function fetchList(url){
   fetch(url)
@@ -17,11 +26,4 @@ function fetchList(url){
   })
 }
 
-unorderedList.addEventListener('change', (event) => {
-  var data = { name: event.target.name}
-  var url = new URL("http://localhost:4567/item_request")
-  Object.keys(data).forEach(key => {
-    url.searchParams.append(key, data[key])
-  })
-  fetchList(url)
-})
+fetchList(url)

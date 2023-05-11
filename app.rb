@@ -61,6 +61,7 @@ end
 
 get '/item_request' do
   activity = params[:name]
+  return @items_to_pack.to_json if activity.nil?
   @user = User.find(session[:user_id])
   index = @user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
   if index
