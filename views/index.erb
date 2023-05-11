@@ -27,7 +27,6 @@
       </form>
 
       <ul id="ul" style="list-style-type:none;">
-        <%# user = @user%>
         <%activities = @user.activities%>
         <%activities.each do |activity|%>
           <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
@@ -40,6 +39,7 @@
       </ul>
     </div>
   </div>
+  <div>
 
   <script src="scripts_index.js"></script>
 </body>

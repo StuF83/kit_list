@@ -1,12 +1,6 @@
 const unorderedList = document.getElementById("ul");
 
-unorderedList.addEventListener('change', (event) => {
-  var data = { name: event.target.name}
-  var url = new URL("http://localhost:4567/item_request")
-  Object.keys(data).forEach(key => {
-    url.searchParams.append(key, data[key])
-  })
-
+function fetchList(url){
   fetch(url)
   .then(response => response.json())
   .then((data) => {
@@ -21,4 +15,13 @@ unorderedList.addEventListener('change', (event) => {
       })
     })
   })
+}
+
+unorderedList.addEventListener('change', (event) => {
+  var data = { name: event.target.name}
+  var url = new URL("http://localhost:4567/item_request")
+  Object.keys(data).forEach(key => {
+    url.searchParams.append(key, data[key])
+  })
+  fetchList(url)
 })
