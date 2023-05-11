@@ -19,8 +19,12 @@ def initialize
 end
 
 get '/' do
-  @user = User.find(session[:user_id])
-  erb :index, locals: { user: @user }
+  if session[:user_id].nil?
+    redirect '/landing'
+  else
+    @user = User.find(session[:user_id])
+    erb :index, locals: { user: @user }
+  end
 end
 
 get '/landing' do
