@@ -26,4 +26,8 @@ function fetchList(url){
   })
 }
 
-fetchList(url)
+activit_list = Array.from(unorderedList.childNodes).filter(nodes => nodes.tagName === 'LI');
+activity_array = []
+activit_list.forEach(activity => activity_array.push(activity.outerText));
+
+console.log(activity_array);
