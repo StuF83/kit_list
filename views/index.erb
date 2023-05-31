@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="stylesheet.css">
   <title>Document</title>
 </head>
@@ -27,7 +28,6 @@
       </form>
 
       <ul id="ul" style="list-style-type:none;">
-        <%# user = @user%>
         <%activities = @user.activities%>
         <%activities.each do |activity|%>
           <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
@@ -40,7 +40,11 @@
       </ul>
     </div>
   </div>
+  <div>
+
 
   <script src="scripts_index.js"></script>
+  <script>fetchList(url)</script>
+
 </body>
 </html>
