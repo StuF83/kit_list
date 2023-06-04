@@ -15,14 +15,13 @@ end
 
 def initialize
   super
-  @items_to_pack = []
+  @items_to_pack = {}
 end
 
 get '/' do
   if session[:user_id].nil?
     redirect '/landing'
   else
-    session[:message] = 'message'
     @user = User.find(session[:user_id])
     erb :index, locals: { user: @user, items_to_pack: @items_to_pack }
   end
@@ -62,16 +61,13 @@ end
 
 get '/item_request' do
   activity = params[:name]
-  return @items_to_pack.to_json if activity.nil?
-
   @user = User.find(session[:user_id])
-  index = @user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
-  if index
-    @items_to_pack.delete_at(index)
+  if @items_to_pack.key?(activity.to_sym)
+    @items_to_pack.delete(activity.to_sym)
   else
     activity_name = @user.activities.find_by(name: activity).name
     activity_items = @user.activities.find_by(name: activity).items_array
-    @items_to_pack << @user.add_items_to_pack(activity_name, activity_items)
+    @items_to_pack[activity_name.to_sym] = activity_items
   end
   @items_to_pack.to_json
 end

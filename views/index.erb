@@ -30,13 +30,20 @@
       <ul id="ul" style="list-style-type:none;">
         <%activities = @user.activities%>
         <%activities.each do |activity|%>
-          <li><input type="checkbox" name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
+          <% checked = 'checked' %>
+          <li><input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
         <%end%>
       </ul>
     </div>
     <div class="right">
       <h2>Items</h2>
       <ul id="itemList">
+      <% items_to_pack.each do |activity_name, items| %>
+         <li><%=activity_name%></li>
+        <% items.each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      <% end %>
       </ul>
     </div>
   </div>
