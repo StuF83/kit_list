@@ -1,3 +1,4 @@
+const url = new URL("http://localhost:4567/item_request")
 const unorderedList = document.getElementById("ul");
 const cookies = document.cookie;
 console.log(cookies);
@@ -9,10 +10,14 @@ unorderedList.addEventListener('change', (event) => {
   console.log(event.target.checked);
   console.log(cookies);
   var url = new URL("http://localhost:4567/item_request")
+
   Object.keys(data).forEach(key => {
     url.searchParams.append(key, data[key])
   })
+  fetchList(url)
+})
 
+function fetchList(url){
   fetch(url)
   .then(response => response.json())
   .then((data) => {
@@ -27,4 +32,10 @@ unorderedList.addEventListener('change', (event) => {
       })
     })
   })
-})
+}
+
+activit_list = Array.from(unorderedList.childNodes).filter(nodes => nodes.tagName === 'LI');
+activity_array = []
+activit_list.forEach(activity => activity_array.push(activity.outerText));
+
+console.log(activity_array);
