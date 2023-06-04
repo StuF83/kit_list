@@ -7,7 +7,7 @@ require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
 
-set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3'}
+set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
 
 configure do
   enable :sessions
@@ -22,8 +22,9 @@ get '/' do
   if session[:user_id].nil?
     redirect '/landing'
   else
+    session[:message] = 'message'
     @user = User.find(session[:user_id])
-    erb :index, locals: { user: @user }
+    erb :index, locals: { user: @user, items_to_pack: @items_to_pack }
   end
 end
 
@@ -62,6 +63,7 @@ end
 get '/item_request' do
   activity = params[:name]
   return @items_to_pack.to_json if activity.nil?
+
   @user = User.find(session[:user_id])
   index = @user.activities.find_by(name: activity).activity_in_packing_list?(@items_to_pack)
   if index
