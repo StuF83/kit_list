@@ -8,10 +8,7 @@ class Activity < ActiveRecord::Base
     @item_list
   end
 
-  def activity_in_packing_list?(packing_list)
-    packing_list.each_with_index do |activity_array, index|
-      return index if name == activity_array.first
-    end
-    false
-  end
+  # def activity_in_packing_list?(activity)
+  #   Hash_key?(activity)
+  # end
 end

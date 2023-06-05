@@ -1,14 +1,11 @@
 const url = new URL("http://localhost:4567/item_request")
 const unorderedList = document.getElementById("ul");
-const cookies = document.cookie;
-console.log(cookies);
 
 unorderedList.addEventListener('change', (event) => {
   var data = { name: event.target.name}
   console.log(data);
   console.log("event listener");
   console.log(event.target.checked);
-  console.log(cookies);
   var url = new URL("http://localhost:4567/item_request")
 
   Object.keys(data).forEach(key => {
@@ -26,11 +23,12 @@ function fetchList(url){
     while (itemList.hasChildNodes()) {
       itemList.removeChild(itemList.firstChild);
     }
-    data.forEach(activity => {
-      activity.forEach(element =>{
-        itemList.insertAdjacentHTML("beforeend", `<li>${element}</li>`)
-      })
-    })
+    for (const key in data) {
+      itemList.insertAdjacentHTML("beforeend", `<li>${key}</li>`);
+      for (const value of data[key]) {
+        itemList.insertAdjacentHTML("beforeend", `<li>${value}</li>`);
+      }
+    }
   })
 }
 
