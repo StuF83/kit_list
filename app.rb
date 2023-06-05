@@ -23,6 +23,7 @@ get '/' do
     redirect '/landing'
   else
     @user = User.find(session[:user_id])
+    cache_control :no_store
     erb :index, locals: { user: @user, items_to_pack: @items_to_pack }
   end
 end
