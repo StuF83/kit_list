@@ -1,19 +1,61 @@
+/* shared */
+
 html, body {
   margin:0;
   padding:0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: whitesmoke;
 }
 
 .navbar {
-  background-color: red;
+  color: whitesmoke;
+  background-color: darkslategrey;
   display: flex;
   justify-content: space-between;
-  margin-top: 0;
+  flex: 1 1 auto;
+  margin-top: 20px;
+  padding: 10px 30px;
 }
 
 .title {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+
+/* index */
+
+.top-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 30px;
+
+}
+
+.card {
+  background-color: white;
+  border: solid grey 2px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
+  padding: 30px;
+}
+
+.left {
+  margin-left: 40px;
+}
+
+.right {
+  margin-right: 40px;
+}
+
+
+/* landing */
 
 .form-container {
   margin-top: 100px;
@@ -27,22 +69,9 @@ html, body {
 .form-card{
   display: flex;
   flex-direction: column;
-  /* justify-content: right; */
   justify-content: space-between;
 }
 
 .login-form-item {
   margin: 20px 0px;
-}
-
-.container {
-  display: flex;
-}
-
-.left {
-  width: 45%;
-}
-
-.right {
-  width: 45%;
 }
