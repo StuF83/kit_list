@@ -7,17 +7,15 @@
   <link rel="stylesheet" href="stylesheet.css">
   <title>Add New Activity</title>
 </head>
+
 <body>
-  <div class="navbar">
-    <div>
-    </div>
-    <div>
-    <h1 class ="title">Kit List</h1>
-    </div>
-    <div>
-    <h3 class ="login">Log In</h3>
-    </div>
-  </div>
+  <header class="navbar">
+      <div>
+      </div>
+      <h1 class ="title">Kit List</h1>
+      <h3 class ="login"><%=@user.email%></h3>
+  </header>
+
   <div>
     <form action="http://localhost:4567/new_activity_save" method="post" name="new_activity_form" id="new_activity_form">
     <label for="new_activity_name">Activity</label>

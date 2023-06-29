@@ -43,7 +43,8 @@ post '/login' do
 end
 
 get '/new_activity' do
-  erb :new_activity
+  @user = User.find(session[:user_id])
+  erb :new_activity, locals: { user: @user }
 end
 
 post '/new_activity_save' do
