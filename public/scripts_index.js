@@ -1,6 +1,10 @@
 const url = new URL("http://localhost:4567/item_request")
 const unorderedList = document.getElementById("ul");
 
+let itemisedListButton = document.getElementById("itemised-list-button");
+let activityListButton = document.getElementById("activity-list-button");
+
+
 unorderedList.addEventListener('change', (event) => {
   var data = { name: event.target.name}
   console.log(data);
@@ -40,3 +44,14 @@ activity_array = []
 activit_list.forEach(activity => activity_array.push(activity.outerText));
 
 console.log(activity_array);
+
+itemisedListButton.addEventListener('click', () => {
+  const itemList = document.getElementById("itemList");
+  while (itemList.hasChildNodes()) {
+    itemList.removeChild(itemList.firstChild);
+  }
+});
+
+activityListButton.addEventListener('click', function() {
+  fetchList(url)
+});

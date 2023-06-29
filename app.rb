@@ -62,6 +62,8 @@ post '/new_activity_save' do
 end
 
 get '/item_request' do
+  return @items_to_pack.to_json unless params[:name]
+
   activity = params[:name]
   @user = User.find(session[:user_id])
   if @items_to_pack.key?(activity.to_sym)

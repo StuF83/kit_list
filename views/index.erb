@@ -36,6 +36,10 @@
       </div>
       <div class="right card">
         <h2>Items</h2>
+        <div>
+          <button id="activity-list-button">By Activity</button>
+          <button id="itemised-list-button">Itemised List</button>
+        </div>
         <ul id="itemList">
         <% items_to_pack.each do |activity_name, items| %>
           <li class="item-list-activity-name"><%=activity_name%></li>
