@@ -25,6 +25,9 @@ function fetchList(url){
     }
     for (const key in data) {
       itemList.insertAdjacentHTML("beforeend", `<li>${key}</li>`);
+      let activityName = itemList.lastChild;
+      console.log(activityName);
+      activityName.classList.add("item-list-activity-name");
       for (const value of data[key]) {
         itemList.insertAdjacentHTML("beforeend", `<li>${value}</li>`);
       }

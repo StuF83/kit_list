@@ -54,6 +54,14 @@ body {
   margin-right: 40px;
 }
 
+ul {
+  list-style: none;
+}
+
+.item-list-activity-name {
+  font-weight: bold;
+}
+
 
 /* landing */
 

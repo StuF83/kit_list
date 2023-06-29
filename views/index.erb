@@ -38,7 +38,7 @@
         <h2>Items</h2>
         <ul id="itemList">
         <% items_to_pack.each do |activity_name, items| %>
-          <li><%=activity_name%></li>
+          <li class="item-list-activity-name"><%=activity_name%></li>
           <% items.each do |item| %>
             <li><%= item %></li>
           <% end %>
