@@ -70,7 +70,8 @@ function populateItemList(data) {
     }
   }
   // console.log(itemsSet);
-  itemsSet.forEach(value => {
+  let sortedSet = Array.from(itemsSet).sort();
+  sortedSet.forEach(value => {
     itemList.insertAdjacentHTML("beforeend", `<li>${value}</li>`)
   })
 }

@@ -49,13 +49,14 @@ end
 
 post '/new_activity_save' do
   @user = User.find(session[:user_id])
-  new_activity_name = params[:new_activity_name]
+  new_activity_name = params[:new_activity_name].capitalize
   @user.activities.create(name: new_activity_name)
   activity = @user.activities.find_by(name: new_activity_name)
   p items = params[:new_activity_items]
   item_array = items.split(/\r\n/)
   item_array.each do |item_name|
-    activity.items.create(name: item_name)
+    item_name_capitalized = item_name.split.map(&:capitalize).join(' ')
+    activity.items.create(name: item_name_capitalized)
   end
   p activity.items
   redirect '/'
