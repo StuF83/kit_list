@@ -62,6 +62,10 @@ ul {
   font-weight: bold;
 }
 
+.button-pressed {
+  color: blue;
+}
+
 
 /* landing */
 
