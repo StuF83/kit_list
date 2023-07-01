@@ -25,17 +25,20 @@
             <input type="text" id="activity" name="activity">
             <button>Add Activity</button>
         </form>
-        <h3>Select activities to add to your kit-list</h3>
         <ul id="ul" style="list-style-type:none;">
           <%activities = @user.activities%>
-          <%activities.each do |activity|%>
-            <% checked = 'checked' if items_to_pack.has_key?(activity.name.to_sym) %>
-            <li>
-            <input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%>
-            <label for="<%=activity.name%>"></label>
-            </li>
-
-          <%end%>
+          <% if activities.count == 0 %>
+            <p>you have no activites, add one above</p>
+          <% else %>
+          <h3>Select activities to add to your kit-list</h3>
+            <%activities.each do |activity|%>
+              <% checked = 'checked' if items_to_pack.has_key?(activity.name.to_sym) %>
+              <li>
+              <input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%>
+              <label for="<%=activity.name%>"></label>
+              </li>
+            <%end%>
+          <% end %>
         </ul>
         <p style="display:inline-block">Delete selected activites</p>
         <button id="delete-activity">DELETE</button>
