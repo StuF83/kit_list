@@ -49,13 +49,14 @@ end
 
 post '/new_activity_save' do
   @user = User.find(session[:user_id])
-  new_activity_name = params[:new_activity_name]
+  new_activity_name = params[:new_activity_name].capitalize
   @user.activities.create(name: new_activity_name)
   activity = @user.activities.find_by(name: new_activity_name)
   p items = params[:new_activity_items]
   item_array = items.split(/\r\n/)
   item_array.each do |item_name|
-    activity.items.create(name: item_name)
+    item_name_capitalized = item_name.split.map(&:capitalize).join(' ')
+    activity.items.create(name: item_name_capitalized)
   end
   p activity.items
   redirect '/'
@@ -73,5 +74,18 @@ get '/item_request' do
     activity_items = @user.activities.find_by(name: activity).items_array
     @items_to_pack[activity_name.to_sym] = activity_items
   end
+  p @items_to_pack
   @items_to_pack.to_json
+end
+
+post '/destroy_activities' do
+  content_type :json
+  activities = JSON.parse(request.body.read)
+
+  @user = User.find(session[:user_id])
+  activities.each do |_key, activity|
+    @items_to_pack.delete(activity.to_sym)
+    @user.activities.find_by(name: activity).destroy
+  end
+  { message: 'Request processed successfully' }.to_json
 end
