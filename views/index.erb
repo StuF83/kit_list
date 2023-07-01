@@ -30,9 +30,15 @@
           <%activities = @user.activities%>
           <%activities.each do |activity|%>
             <% checked = 'checked' if items_to_pack.has_key?(activity.name.to_sym) %>
-            <li><input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%></li>
+            <li>
+            <input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%>
+            <label for="<%=activity.name%>"></label>
+            </li>
+
           <%end%>
         </ul>
+        <p style="display:inline-block">Delete selected activites</p>
+        <button id="delete-activity">DELETE</button>
       </div>
       <div class="right card">
         <h2>Items</h2>

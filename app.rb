@@ -74,5 +74,19 @@ get '/item_request' do
     activity_items = @user.activities.find_by(name: activity).items_array
     @items_to_pack[activity_name.to_sym] = activity_items
   end
+  p @items_to_pack
   @items_to_pack.to_json
+end
+
+post '/destroy_activities' do
+  content_type :json
+  activities = JSON.parse(request.body.read)
+  p activities
+
+  @user = User.find(session[:user_id])
+  activities.each do |_key, activity|
+    @items_to_pack.delete(activity.to_sym)
+    p @user.activities.find_by(name: activity).destroy
+  end
+  { message: 'Request processed successfully' }.to_json
 end

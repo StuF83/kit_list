@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :user
-  has_many :items
+  has_many :items, dependent: :destroy
 
   def items_array
     @item_list = []
@@ -8,7 +8,8 @@ class Activity < ActiveRecord::Base
     @item_list
   end
 
-  # def activity_in_packing_list?(activity)
-  #   Hash_key?(activity)
+  # def destroy(activity_name)
+  #   activity = Activity.find_by(name: activity_name)
+  #   activity.destroy
   # end
 end
