@@ -15,16 +15,16 @@
       <h3 class ="login"><%=@user.email%></h3>
   </header>
 
-  <div>
-    <form action="http://localhost:4567/new_activity_save" method="post" name="new_activity_form" id="new_activity_form">
-    <label for="new_activity_name">Activity</label>
-    <input type="text" id="new_activity_name" name="new_activity_name">
-    <label for="new_activity_description">Description</label>
-    <input type="text" id="new_activity_description" name="new_activity_description">
-    <label for="new_activity_items">Items</label>
-    <textarea id="new_activity_items" name="new_activity_items" rows="4" cols="50"></textarea>
-    <button type="submit">Save Activty</button>
-    </form>
+  <div class="card">
+    <div>
+      <form action="http://localhost:4567/new_activity_save" method="post" name="new_activity_form" id="new_activity_form">
+      <label for="new_activity_name">Activity</label>
+      <input type="text" id="new_activity_name" name="new_activity_name">
+      <label for="new_activity_items">Items</label>
+      <textarea id="new_activity_items" name="new_activity_items" rows="4" cols="50"></textarea>
+      <button type="submit">Save Activty</button>
+      </form>
+    </div>
   </div>
 
   <script src="scripts_new_activity.js"></script>
