@@ -81,12 +81,11 @@ end
 post '/destroy_activities' do
   content_type :json
   activities = JSON.parse(request.body.read)
-  p activities
 
   @user = User.find(session[:user_id])
   activities.each do |_key, activity|
     @items_to_pack.delete(activity.to_sym)
-    p @user.activities.find_by(name: activity).destroy
+    @user.activities.find_by(name: activity).destroy
   end
   { message: 'Request processed successfully' }.to_json
 end
