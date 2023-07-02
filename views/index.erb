@@ -34,6 +34,7 @@
             <%activities.each do |activity|%>
               <% checked = 'checked' if items_to_pack.has_key?(activity.name.to_sym) %>
               <li>
+              <a href="http://localhost:4567/edit?activity=<%= activity.name %>" style="display:inline-block">EDIT</a>
               <input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%>
               <label for="<%=activity.name%>"></label>
               </li>
