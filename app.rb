@@ -109,5 +109,7 @@ post '/edit_activity' do
     item_name_capitalized = item_name.split.map(&:capitalize).join(' ')
     activity.items.create(name: item_name_capitalized)
   end
+  activity_items = activity.items_array
+  @items_to_pack[activity.name.to_sym] = activity_items
   redirect '/'
 end

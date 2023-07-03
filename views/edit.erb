@@ -28,11 +28,9 @@
       <label for="edit_activity_name">Activity</label>
       <input type="text" id="edit_activity_name" value="<%= @activity.name %>" name="edit_activity_name">
       <label for="edit_activity_items">Items</label>
-      <textarea id="edit_activity_items" name="edit_activity_items" rows="4" cols="50">
-        <% @activity.items.each do |item| %>
-<%= item.name.strip %>
-        <% end %>
-      </textarea>
+      <textarea id="edit_activity_items" name="edit_activity_items" rows="4" cols="50"><% @activity.items.each do |item| %><%= item.name %>
+<% end
+      %></textarea>
       <button type="submit">Save Activty</button>
       </form>
     </div>
