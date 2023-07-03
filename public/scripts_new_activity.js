@@ -16,9 +16,5 @@ form.addEventListener("submit", function (event) {
     console.log("no");
     return
   }
-  // event.preventDefault();
-  // console.log(activity_items.value.split("\n"));
-  // activity_items.value = activity_items.value.split("\n")
-  // console.log(activity_items.value);
   form.submit();
 })

@@ -89,3 +89,27 @@ post '/destroy_activities' do
   end
   { message: 'Request processed successfully' }.to_json
 end
+
+get '/edit' do
+  activity_name = params[:activity]
+  @user = User.find(session[:user_id])
+  @activity = @user.activities.find_by(name: activity_name)
+  erb :edit, locals: { activity: @activity }
+end
+
+post '/edit_activity' do
+  @user = User.find(session[:user_id])
+  old_activity_name = params[:old_activity_name]
+  activity = @user.activities.find_by(name: old_activity_name)
+  activity.items.destroy_all
+  activity.update(name: params[:edit_activity_name].capitalize)
+  items = params[:edit_activity_items]
+  item_array = items.split(/\r\n/)
+  item_array.each do |item_name|
+    item_name_capitalized = item_name.split.map(&:capitalize).join(' ')
+    activity.items.create(name: item_name_capitalized)
+  end
+  activity_items = activity.items_array
+  @items_to_pack[activity.name.to_sym] = activity_items
+  redirect '/'
+end

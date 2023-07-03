@@ -4,6 +4,7 @@ const userActivites = document.getElementById("ul");
 
 userActivites.addEventListener('change', (event) => {
   var data = { name: event.target.name}
+  console.log(event.target);
   var url = new URL("http://localhost:4567/item_request")
 
   Object.keys(data).forEach(key => {
@@ -86,12 +87,15 @@ const deleteActivityButton = document.getElementById("delete-activity");
 
 deleteActivityButton.addEventListener('click', (event) => {
   activities = Array.from(userActivites.childNodes).filter(nodes => nodes.tagName === 'LI')
+  // console.log(activities);
   checkedActivities = []
   checkedElements = []
   activities.forEach(element => {
-    if (element.childNodes[1].checked === true) {
+    if (element.querySelector('input').checked === true) {
+      // console.log(element);
       checkedActivities.push(element)
-      checkedElements.push(element.outerText)
+      // console.log(element.querySelector('label').htmlFor);
+      checkedElements.push(element.querySelector('label').htmlFor)
     }
   })
   console.log(checkedElements);
@@ -131,4 +135,4 @@ activityList = Array.from(userActivites.childNodes).filter(nodes => nodes.tagNam
 activityArray = [];
 activityList.forEach(activity => activityArray.push(activity.outerText));
 
-console.log(activityArray);
+// console.log(activityArray);
