@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Saira+Stencil+One&display=swap" rel="stylesheet">
@@ -11,31 +12,28 @@
 <body>
 
   <header class="navbar">
-      <div></div>
       <h1 class ="title">Kit List</h1>
+      <div></div>
       <h3 class ="login"><%=@user.email%></h3>
   </header>
-  <h1>edit</h1>
-    <p>activity name <%= @activity.name %></p>
-    <ul>
-      <% @activity.items.each do |item| %>
-        <li><%= item.name %></li>
-      <% end %>
-    </ul>
 
-  <div class="card">
-    <div>
-      <form action="http://localhost:4567/edit_activity" method="post" name="edit_activity_form" id="edit_activity_form">
-      <label for="old_activity_name" type="hidden"></label>
-      <input type="hidden" id="old_activity_name" value="<%= @activity.name %>" name="old_activity_name">
-      <label for="edit_activity_name">Activity</label>
-      <input type="text" id="edit_activity_name" value="<%= @activity.name %>" name="edit_activity_name">
-      <label for="edit_activity_items">Items</label>
-      <textarea id="edit_activity_items" name="edit_activity_items" rows="4" cols="50"><% @activity.items.each do |item| %><%= item.name %>
+  <div class="page">
+    <div class="top-cards">
+      <div class="card">
+        <div>
+          <form action="http://localhost:4567/edit_activity" method="post" name="edit_activity_form" id="edit_activity_form">
+          <label for="old_activity_name" type="hidden"></label>
+          <input type="hidden" id="old_activity_name" value="<%= @activity.name %>" name="old_activity_name">
+          <label for="edit_activity_name">Activity</label>
+          <input type="text" id="edit_activity_name" value="<%= @activity.name %>" name="edit_activity_name">
+          <label for="edit_activity_items">Items</label>
+          <textarea id="edit_activity_items" name="edit_activity_items" rows="4" cols="50"><% @activity.items.each do |item| %><%= item.name %>
 <% end
-      %></textarea>
-      <button type="submit">Save Activty</button>
-      </form>
+          %></textarea>
+          <button type="submit">Save Activty</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
