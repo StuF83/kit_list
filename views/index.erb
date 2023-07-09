@@ -6,15 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="stylesheet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Saira+Stencil+One&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 
 <body>
   <header class="navbar">
-      <div>
-      </div>
       <h1 class ="title">Kit List</h1>
-      <h3 class ="login"><%=@user.email%></h3>
+      <div></div>
+      <div class ="login">
+      <h3 class="login-username"><%=@user.email%></h3>
+      <a href='http://localhost:4567/logout_user'>Log out</a>
+      </div>
   </header>
 
   <div class="page">
@@ -28,7 +33,7 @@
         <ul id="ul" style="list-style-type:none;">
           <%activities = @user.activities%>
           <% if activities.count == 0 %>
-            <p>you have no activites, add one above</p>
+            <p>You have no activites, add one above</p>
           <% else %>
           <h3>Select activities to add to your kit-list</h3>
             <%activities.each do |activity|%>
@@ -45,10 +50,10 @@
         <button id="delete-activity">DELETE</button>
       </div>
       <div class="right card">
-        <h2>Items</h2>
+        <h2>Your Kit List</h2>
         <div>
-          <button id="activity-list-button" class="button-pressed">By Activity</button>
-          <button id="itemised-list-button">Itemised List</button>
+          <button id="activity-list-button" class="button-pressed">Activity</button>
+          <button id="itemised-list-button">Itemised</button>
         </div>
         <ul id="itemList">
         <% items_to_pack.each do |activity_name, items| %>

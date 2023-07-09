@@ -113,3 +113,8 @@ post '/edit_activity' do
   @items_to_pack[activity.name.to_sym] = activity_items
   redirect '/'
 end
+
+get '/logout_user' do
+  session.clear
+  redirect '/landing'
+end
