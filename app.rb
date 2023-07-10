@@ -6,12 +6,13 @@ require 'json'
 require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
+require_relative 'config/environment'
 
-set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
+# set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
 
-configure do
-  enable :sessions
-end
+# configure do
+#   enable :sessions
+# end
 
 def initialize
   super
