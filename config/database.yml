@@ -13,4 +13,3 @@ production:
   username: db.user
   password: db.password
   database: db.path[1..-1]
-  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
