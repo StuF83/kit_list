@@ -8,6 +8,8 @@ require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
 
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+
 configure do
   enable :sessions
 end
