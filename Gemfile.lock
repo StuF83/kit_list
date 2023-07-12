@@ -19,7 +19,10 @@ GEM
     minitest (5.18.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.9)
     pg (1.5.3)
+    puma (6.3.0)
+      nio4r (~> 2.0)
     rack (2.2.6.4)
     rack-protection (3.0.5)
       rack
@@ -48,6 +51,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   pg
+  puma
   rake
   sinatra
   sinatra-activerecord
