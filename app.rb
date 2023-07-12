@@ -8,9 +8,9 @@ require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
 
-# configure do
-#   enable :sessions
-# end
+configure do
+  enable :sessions
+end
 
 def initialize
   super
