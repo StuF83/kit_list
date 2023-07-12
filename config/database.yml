@@ -8,6 +8,8 @@ test:
 
 production:
   adapter: postgresql
+  encoding: unicode
+  pool: 5
   db: <%= ENV['DATABASE_URL'] %>
   host: db.host
   username: db.user
