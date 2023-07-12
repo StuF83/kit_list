@@ -1,17 +1,19 @@
-# development:
-#   adapter: sqlite3
-#   database: db/development.sqlite3
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
 
-# test:
-#   adapter: sqlite3
-#   database: db/development.sqlite3
+test:
+  adapter: sqlite3
+  database: db/development.sqlite3
 
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: 5
-#   db: <%= ENV['DATABASE_URL'] %>
-#   host: db.host
-#   username: db.user
-#   password: db.password
-#   database: db.path[1..-1]
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  # db: <%= ENV['DATABASE_URL'] %>
+  # host: db.host
+  # username: db.user
+  # password: db.password
+  database: <%= ENV['DATABASE_URL'] %>
+
+# postgres://vdqdchhfdjjjfc:98ed4cd819a12ba746cfe5926cfcb00a0f928e8e5cf2072ff01e317d000fddaa@ec2-3-92-151-217.compute-1.amazonaws.com:5432/d1480s1p0oq6vk
