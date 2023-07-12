@@ -7,7 +7,6 @@ require_relative 'config/environment'
 require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
-# set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
 
 # configure do
 #   enable :sessions
