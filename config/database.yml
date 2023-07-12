@@ -1,0 +1,15 @@
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+test:
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+production:
+  adapter: postgresql
+  db: <%= ENV['DATABASE_URL'] %>
+  host: db.host
+  username: db.user
+  password: db.password
+  database: db.path[1..-1]
