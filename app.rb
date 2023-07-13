@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'pg'
 require 'sinatra/activerecord'
 require 'json'
 require_relative 'config/environment'
@@ -8,7 +9,9 @@ require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+# set :database_file, 'config/database.yml'
+
+# ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 
 configure do
   enable :sessions

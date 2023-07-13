@@ -1,17 +1,11 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: development
 
 test:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: test
 
 production:
   adapter: postgresql
-  encoding: unicode
-  pool: 5
-  # db: <%= ENV['DATABASE_URL'] %>
-  # host: db.host
-  # username: db.user
-  # password: db.password
   database: <%= ENV['DATABASE_URL'] %>
