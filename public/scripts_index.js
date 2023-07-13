@@ -1,11 +1,14 @@
-const url = new URL("http://localhost:4567/item_request")
-const destroyUrl = new URL("http://localhost:4567/destroy_activities")
+const baseUrl = window.location.href
+const url = new URL("/item_request", baseUrl)
+const destroyUrl = new URL("/destroy_activities", baseUrl)
 const userActivites = document.getElementById("ul");
+
+console.log(baseUrl);
 
 userActivites.addEventListener('change', (event) => {
   var data = { name: event.target.name}
   console.log(event.target);
-  var url = new URL("http://localhost:4567/item_request")
+  var url = new URL("/item_request", baseUrl)
 
   Object.keys(data).forEach(key => {
     url.searchParams.append(key, data[key]);

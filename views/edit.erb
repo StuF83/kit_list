@@ -21,7 +21,7 @@
     <div class="top-cards">
       <div class="card">
         <div>
-          <form action="http://localhost:4567/edit_activity" method="post" name="edit_activity_form" id="edit_activity_form">
+          <form action="/edit_activity" method="post" name="edit_activity_form" id="edit_activity_form">
           <label for="old_activity_name" type="hidden"></label>
           <input type="hidden" id="old_activity_name" value="<%= @activity.name %>" name="old_activity_name">
           <label for="edit_activity_name">Activity</label>

@@ -18,14 +18,14 @@
       <div></div>
       <div class ="login">
       <h3 class="login-username"><%=@user.email%></h3>
-      <a href='http://localhost:4567/logout_user'>Log out</a>
+      <a href='/logout_user'>Log out</a>
       </div>
   </header>
 
   <div class="page">
     <div class="top-cards">
       <div class="left card">
-        <form action="http://localhost:4567/new_activity" method="get">
+        <form action="/new_activity" method="get">
             <label for="activity">Activity</label>
             <input type="text" id="activity" name="activity">
             <button>Add Activity</button>
@@ -39,7 +39,7 @@
             <%activities.each do |activity|%>
               <% checked = 'checked' if items_to_pack.has_key?(activity.name.to_sym) %>
               <li>
-              <a href="http://localhost:4567/edit?activity=<%= activity.name %>" style="display:inline-block">EDIT</a>
+              <a href="/edit?activity=<%= activity.name %>" style="display:inline-block">EDIT</a>
               <input type="checkbox" <%= checked %>  name=<%=activity.name%> value=<%=activity.name%>><%=activity.name%>
               <label for="<%=activity.name%>"></label>
               </li>
