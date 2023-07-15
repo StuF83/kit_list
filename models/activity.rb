@@ -7,9 +7,4 @@ class Activity < ActiveRecord::Base
     items.each { |item| @item_list << item.name }
     @item_list
   end
-
-  # def destroy(activity_name)
-  #   activity = Activity.find_by(name: activity_name)
-  #   activity.destroy
-  # end
 end

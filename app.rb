@@ -9,17 +9,8 @@ require_relative 'models/user'
 require_relative 'models/activity'
 require_relative 'models/item'
 
-# set :database_file, 'config/database.yml'
-
-# ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
-
 configure do
   enable :sessions
-end
-
-def initialize
-  super
-  @items_to_pack = {}
 end
 
 get '/' do
@@ -28,7 +19,7 @@ get '/' do
   else
     @user = User.find(session[:user_id])
     cache_control :no_store
-    erb :index, locals: { user: @user, items_to_pack: @items_to_pack }
+    erb :index, locals: { user: @user, items_to_pack: session[:items] }
   end
 end
 
@@ -42,7 +33,8 @@ post '/login' do
   redirect back unless User.exists?(email: session[:email])
   redirect back unless User.find_by(email: session[:email]).password == session[:password]
   session[:user_id] = User.find_by(email: session[:email]).id
-  session[:items_to_pack] ||= @items_to_pack
+  @user = User.find_by(email: session[:email])
+  session[:items] = {}
   redirect '/'
 end
 
@@ -67,19 +59,18 @@ post '/new_activity_save' do
 end
 
 get '/item_request' do
-  return @items_to_pack.to_json unless params[:name]
+  return session[:items].to_json unless params[:name]
 
   activity = params[:name]
   @user = User.find(session[:user_id])
-  if @items_to_pack.key?(activity.to_sym)
-    @items_to_pack.delete(activity.to_sym)
+  if session[:items].key?(activity.to_sym)
+    session[:items].delete(activity.to_sym)
   else
     activity_name = @user.activities.find_by(name: activity).name
     activity_items = @user.activities.find_by(name: activity).items_array
-    @items_to_pack[activity_name.to_sym] = activity_items
+    session[:items][activity_name.to_sym] = activity_items
   end
-  p @items_to_pack
-  @items_to_pack.to_json
+  session[:items].to_json
 end
 
 post '/destroy_activities' do
@@ -88,7 +79,7 @@ post '/destroy_activities' do
 
   @user = User.find(session[:user_id])
   activities.each do |_key, activity|
-    @items_to_pack.delete(activity.to_sym)
+    session[:items].delete(activity.to_sym)
     @user.activities.find_by(name: activity).destroy
   end
   { message: 'Request processed successfully' }.to_json
@@ -114,7 +105,7 @@ post '/edit_activity' do
     activity.items.create(name: item_name_capitalized)
   end
   activity_items = activity.items_array
-  @items_to_pack[activity.name.to_sym] = activity_items
+  session[:items][activity.name.to_sym] = activity_items
   redirect '/'
 end
 
